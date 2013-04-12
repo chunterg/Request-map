@@ -9,8 +9,8 @@ app.all('/ajax/:action', function(req, res) {
           if(ac==req.params.action){
             if(!config[ac].res_code||config[ac].res_code==200){
               res.status(200);
+              //if get the correct param
               if(isEquelData(config[ac].req,req.query)){
-                
                 res.send(config[ac].res.success);
               } else {
                 res.send(config[ac].res.fail);

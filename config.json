@@ -1,0 +1,25 @@
+{
+	"getUserIdByName":{
+		"req": {"name":"chunterg"},
+		"res": {
+				"success":{"data":"14","status":"ok"},
+				"fail":{"message":"No match","status":"fail"}
+				}
+	},
+	"getPostById":{
+		"req": {"id":"1"},
+		"res": {
+				"success":{"data":"hello world","status":"ok"},
+				"fail":{"message":"No match","status":"fail"}
+				}
+	},
+	"302":{
+		"res_code":302
+	},
+	"304":{
+		"res_code":304
+	},
+	"500":{
+		"res_code":500
+	}
+}

@@ -19,6 +19,10 @@ Tools for ajax request debugging
 				}
 	}
 
-2.Open the url to debug
+2.start Request-map
 
-	localhost:3000/ajax/getUserIdByName/?name=chunterg
+	node the-tool-path/start
+
+3.Open the url to debug
+
+	http://localhost:3000/ajax/getUserIdByName/?name=chunterg

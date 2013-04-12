@@ -3,8 +3,55 @@
 	<head>
 		<meta charset="UTF-8">
 <title>Request map</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	</head>
 <body>
+	<h3>Test cases</h3>
+	<h4>Success request with correct argument</h4>
+	<a href="javascript:;" onclick="getUserIdByName();">getUserIdByName</a>
+	<script type="text/javascript">
+	function getUserIdByName(){
+		$.getJSON('http://localhost:3000/ajax/getUserIdByName?callback=?',{"name":"chunterg"},function(data){
+			if(data.status=="ok"){
+				alert('success: '+data.data)
+			}else{
+				alert('fail: '+data.message)
+			}	
+		})
+	}	
+	</script>
+<hr>
+	<h4>Fail request with wrong argument</h4>
+	<a href="javascript:;" onclick="getPostById();">getPostById</a>
+	<script type="text/javascript">
+	function getPostById(){
+		$.getJSON('http://localhost:3000/ajax/getPostById?callback=?',{"id":123},function(data){
+			if(data.status=="ok"){
+				alert('success: '+data.data)
+			}else{
+				alert('fail: '+data.message)
+			}	
+		})
+	}	
+	</script>
+<hr>
+	<h4>Error request</h4>
+	<a href="javascript:;" onclick="get404();">404</a>
+	<script type="text/javascript">
+	function get404(){
+		$.get('http://localhost:3000/ajax/404').error(function(){
+			alert(404)
+		})
+	}	
+	</script>
 
+	<a href="javascript:;" onclick="get500();">500</a>
+	<script type="text/javascript">
+	function get500(){
+		$.get('http://localhost:3000/ajax/500').error(function(){
+			alert(500)
+		})
+	}	
+	</script>
 </body>
 </html>

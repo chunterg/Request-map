@@ -3,19 +3,44 @@
 	<head>
 		<meta charset="UTF-8">
 <title>Request map</title>
+  <link rel="stylesheet" href="qunit/qunit.css" media="screen">
+  <script src="qunit/qunit.js"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	</head>
 <body>
+	<div id="qunit"></div>
+	<script type="text/javascript">
+		$(function(){
+			  module('Request.success')
+
+			  asyncTest('Success request', function() {
+			  	$.getJSON('http://localhost:3000/ajax/getUserIdByName?callback=?',{"name":"chunterg"},function(data){
+			  		strictEqual(data.data, '14', 'should be 14');
+			   		start();	
+				})
+			  });
+
+			  module('Request.fail')
+
+			  asyncTest('Fail request', function() {
+			  	$.getJSON('http://localhost:3000/ajax/getPostById?callback=?',{"id":123},function(data){
+					strictEqual(data.message, 'No match', 'should be No match');
+			   		start();	
+				}) 
+			  });
+
+		})
+	</script>
 	<h3>Test cases</h3>
 	<h4>Success request with correct argument</h4>
 	<a href="javascript:;" onclick="getUserIdByName();">getUserIdByName</a>
 	<script type="text/javascript">
-	function getUserIdByName(){
+	function getUserIdByName(callback){
 		$.getJSON('http://localhost:3000/ajax/getUserIdByName?callback=?',{"name":"chunterg"},function(data){
 			if(data.status=="ok"){
-				alert('success: '+data.data)
+				window.info = 'success: '+data.data;
 			}else{
-				alert('fail: '+data.message)
+				window.info = 'fail: '+data.message;
 			}	
 		})
 	}	
@@ -27,9 +52,9 @@
 	function getPostById(){
 		$.getJSON('http://localhost:3000/ajax/getPostById?callback=?',{"id":123},function(data){
 			if(data.status=="ok"){
-				alert('success: '+data.data)
+				window.info = 'success: '+data.data;
 			}else{
-				alert('fail: '+data.message)
+				window.info = 'fail: '+data.message;
 			}	
 		})
 	}	
